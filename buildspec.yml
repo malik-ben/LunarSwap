@@ -7,11 +7,11 @@ phases:
       nodejs: 14  
     commands:
       - echo Installing dependencies...
-      - sudo npm install -g pm2 dotenv @terra-money/terra.js
+      - npm install -g pm2 dotenv @terra-money/terra.js
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - sudo npm install
+      - npm install
   build:
     commands:
       - echo Build started on `date`
