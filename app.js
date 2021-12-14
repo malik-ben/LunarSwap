@@ -6,6 +6,8 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
+var server = app.listen(port, () => {
   console.log(`Any changes are on app listening at http://localhost:${port}`)
 })
+
+server.keepAliveTimeout = 65000
