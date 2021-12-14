@@ -1,0 +1,35 @@
+{
+  "increase_allowance": {
+    "spender": "terra13e4jmcjnwrauvl2fnjdwex0exuzd8zrh5xk29v",
+    "amount": 1000000,
+    "expires": {
+      "never": {}
+    }
+  }
+}
+
+{
+  "balance": {
+    "address": "terra1jqzrla24my4fldsfxnqcewxyvmrpzrvl9rtewt"
+  }
+}
+
+{
+  "allowance": {
+    "owner": "terra1jqzrla24my4fldsfxnqcewxyvmrpzrvl9rtewt",
+    "spender": "terra13e4jmcjnwrauvl2fnjdwex0exuzd8zrh5xk29v"
+  }
+}
+
+{
+  "swap": {
+    "offer_asset": {
+      "info": {
+        "token": {
+          "contract_addr": "terra1u0t35drzyy0mujj8rkdyzhe264uls4ug3wdp3x",
+        }
+      },
+      "amount": "359422002",
+    }
+  }
+}
