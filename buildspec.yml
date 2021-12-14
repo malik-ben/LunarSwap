@@ -7,7 +7,6 @@ phases:
       nodejs: 14  
     commands:
       - echo Installing dependencies...
-      - npm install -g pm2 dotenv @terra-money/terra.js
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
@@ -15,7 +14,6 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Compiling the Node.js code
   post_build:
     commands:
       - echo Build completed on `date`
