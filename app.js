@@ -5,9 +5,7 @@ const port = process.env.port || 3000;
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-
-var server = app.listen(port, () => {
+app.listen(port, () => {
   console.log(`Any changes are on app listening at http://localhost:${port}`)
 })
 
-server.keepAliveTimeout = 65000
