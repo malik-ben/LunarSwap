@@ -12,7 +12,6 @@
   "scripts": {
     "start": "node app.js && node src/blb.mjs"
   },
-  
   "name": "lblarb",
   "version": "1.0.0",
   "main": "app.js",
