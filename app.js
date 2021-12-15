@@ -3,7 +3,7 @@ const app = express()
 const port = process.env.PORT || 3000;
 
 import pkg from "./src/setup.mjs";
-const { terra, wallet } = pkg;
+const { terra, wallet, BLUNA } = pkg;
 
 const LunaBalance = async () => {
   let balance = await wallet.lcd.bank.balance(wallet.key.accAddress);
@@ -11,7 +11,7 @@ const LunaBalance = async () => {
     console.log(balance[0]._coins.uluna.amount);
     return balance[0]._coins.uluna.amount
   } else {
-    console.log("you have no coins")
+    console.log("Sorry you have no coins")
     return 0
   }
 
@@ -20,7 +20,7 @@ const LunaBalance = async () => {
 
 
 const BLunaBalance = async () => {
-  const balance = await terra.wasm.contractQuery(process.env.BLUNA_MAIN, {
+  const balance = await terra.wasm.contractQuery(BLUNA, {
     balance: { address: wallet.key.accAddress },
   });
   console.log(balance.balance);
