@@ -23,7 +23,7 @@ const LunaBalance = async () => {
 };
 //Get Bluna balance
 const BLunaBalance = async () => {
-  const balance = await terra.wasm.contractQuery(process.env.BLUNA_TEST, {
+  const balance = await terra.wasm.contractQuery(BLUNA, {
     balance: { address: wallet.key.accAddress },
   });
   console.log(`BLuna balance is: ${balance.balance}`);
@@ -74,7 +74,7 @@ async function goswap() {
         console.log("Arbitrage could fail");
       }
     } else {
-      if (BL > 0.0) {
+      if (BL > 0.98) {
         const amount = amountBluna;
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);

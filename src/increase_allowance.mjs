@@ -1,15 +1,15 @@
 import pkg from "@terra-money/terra.js";
 const { MsgExecuteContract } = pkg;
 import pkg from "./setup.mjs";
-const { terra, wallet } = pkg;
+const { terra, wallet, BLUNA, LUNA_BLUNA_PAIR } = pkg;
 
 async function cnstx(price) {
   const execute = new MsgExecuteContract(
     wallet.key.accAddress, // sender
-    process.env.BLUNA_TEST, // contract account address
+    BLUNA, // contract account address
     {
       increase_allowance: {
-        spender: process.env.LUNA_BLUNA_PAIR_MAIN,
+        spender: LUNA_BLUNA_PAIR,
         amount: "10000000000001",
       },
     },
