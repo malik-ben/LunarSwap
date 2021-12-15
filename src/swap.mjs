@@ -79,7 +79,7 @@ async function goswap() {
         console.log("Arbitrage could fail");
       }
     } else {
-      if (BL > 0) {
+      if (BL > 0.98) {
         const amount = amountBluna;
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
