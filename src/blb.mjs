@@ -1,5 +1,5 @@
 import pkg from './setup.mjs';
-const {terra, wallet} = pkg;
+const { terra, wallet, LUNA_BLUNA_PAIR } = pkg;
 
 const balance = async () => {
   let bale = await wallet.lcd.bank.balance(wallet.key.accAddress);
@@ -14,7 +14,7 @@ async function getInfo() {
     clearInterval(interval)
   }
   const result = await terra.wasm.contractQuery(
-    process.env.LUNA_LUNAX_PAIR_MAIN,
+    LUNA_BLUNA_PAIR,
     { pool: {} }
   );
   let priceBL = result.assets[0].amount / result.assets[1].amount;
