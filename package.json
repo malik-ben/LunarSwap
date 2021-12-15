@@ -10,7 +10,7 @@
     "typescript": "^4.5.2"
   },
   "scripts": {
-    "start": "node app.js && node src/blb.mjs"
+    "start": "node app.js"
   },
   "name": "lblarb",
   "version": "1.0.0",
