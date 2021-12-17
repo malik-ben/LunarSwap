@@ -78,15 +78,13 @@ async function goswap() {
         const amount = amountBluna;
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
-        let data = `{"swap":{}}`;
-        let buff = new Buffer.from(data);
-        let msg_belief = buff.toString("base64");
+    
 
         contractFunction = {
           send: {
             contract: LUNA_BLUNA_PAIR,
             amount: amount.toString(),
-            msg: msg_belief,
+            msg: "eyJzd2FwIjp7fX0=",
           },
         };
         execute = new MsgExecuteContract(

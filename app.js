@@ -7,7 +7,8 @@ const { terra, wallet, BLUNA } = pkg;
 
 const LunaBalance = async () => {
   let balance = await wallet.lcd.bank.balance(wallet.key.accAddress);
-  if (balance[0]._coins.length > 0) {
+  console.log(balance[0]._coins.uluna.amount)
+  if (balance[0]._coins.uluna.amount > 0) {
     console.log(balance[0]._coins.uluna.amount);
     return balance[0]._coins.uluna.amount
   } else {
@@ -37,7 +38,7 @@ app.get('/', async (req, res) => {
   
 })
 app.listen(port, () => {
-  console.log(`Any changes are on app listening at http://localhost:${port}`)
+  console.log(`${process.env.NODE_ENV}  Any changes are on app listening at http://localhost:${port}`)
   
 })
 

@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 if (process.env.NODE_ENV === "production") {
+  console.log("in prod")
   terra = new LCDClient({
     URL: "https://lcd.terra.dev",
     chainID: "columbus-5",
