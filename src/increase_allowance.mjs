@@ -1,9 +1,9 @@
 import pkg from "@terra-money/terra.js";
 const { MsgExecuteContract } = pkg;
-import pkg from "./setup.mjs";
-const { terra, wallet, BLUNA, LUNA_BLUNA_PAIR } = pkg;
+import setuppkg from "./setup.mjs";
+const { terra, wallet, BLUNA, LUNA_BLUNA_PAIR } = setuppkg;
 
-async function cnstx(price) {
+async function cnstx() {
   const execute = new MsgExecuteContract(
     wallet.key.accAddress, // sender
     BLUNA, // contract account address
@@ -20,4 +20,4 @@ async function cnstx(price) {
   });
   const txResult = await terra.tx.broadcast(executeTx);
 }
-cnstx(priceLB);
+cnstx();
