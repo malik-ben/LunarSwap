@@ -30,13 +30,14 @@ const BLunaBalance = async () => {
 
 
 app.get('/', async (req, res) => {
-  
     var luna = await LunaBalance();
     var bluna = await BLunaBalance();
     res.send(`${luna} and ${bluna}`)
+
   
 })
 app.listen(port, () => {
   console.log(`Any changes are on app listening at http://localhost:${port}`)
+  
 })
 
