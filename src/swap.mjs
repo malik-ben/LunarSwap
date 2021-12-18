@@ -44,7 +44,7 @@ async function goswap() {
   let amountBluna = await BLunaBalance();
   if (amountLuna > 1 || amountBluna > 1) {
     if (amountLuna >= amountBluna) {
-      if (LB > 1.022) {
+      if (LB > 1.02) {
         let amount = amountLuna;
         amount = amount - 1000000;
         console.log(amount);
@@ -74,7 +74,7 @@ async function goswap() {
         console.log("Arbitrage could fail");
       }
     } else {
-      if (BL > 0.994) {
+      if (BL > 0.9935) {
         const amount = amountBluna;
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
