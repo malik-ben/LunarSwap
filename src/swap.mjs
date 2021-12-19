@@ -44,7 +44,7 @@ async function goswap() {
   let amountBluna = await BLunaBalance();
   if (amountLuna > 1 || amountBluna > 1) {
     if (amountLuna >= amountBluna) {
-      if (LB > 1.02) {
+      if (LB > 1.017) {
         let amount = amountLuna;
         amount = amount - 1000000;
         console.log(amount);
