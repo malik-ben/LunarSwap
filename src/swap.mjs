@@ -7,8 +7,8 @@ let BL, LB;
 //Get pair prices and total share
 const getPrices = async () => {
   const result = await terra.wasm.contractQuery(LUNA_BLUNA_PAIR, { pool: {} });
-  BL = result.assets[0].amount / result.assets[1].amount;
-  LB = result.assets[1].amount / result.assets[0].amount;
+  BL = (result.assets[0].amount / result.assets[1].amount) ;
+  LB = (result.assets[1].amount / result.assets[0].amount) ;
   console.log(`\nprice BLuna / Luna  = \x1b[31m${BL}\x1b[0m`);
   console.log(`price Luna / BLuna  = \x1b[32m${LB}\x1b[0m`);
   console.log("\n");
@@ -33,7 +33,7 @@ const BLunaBalance = async () => {
 //Swap function Luna ↔ Bluna, Bluna ↔ Luna
 async function goswap() {
   let prices = await getPrices();
-  console.log(`BL price  is ${BL} and LB price is ${LB}`, LB > 1.2);
+  console.log(`BL price  is ${BL} and LB price is ${LB}`);
 
   let contractFunction = "";
   let contractAddress = "";
@@ -42,11 +42,11 @@ async function goswap() {
 
   let amountLuna = await LunaBalance();
   let amountBluna = await BLunaBalance();
-  if (amountLuna > 1 || amountBluna > 1) {
+  if (amountLuna > 10000 || amountBluna > 10000) {
     if (amountLuna >= amountBluna) {
-      if (LB > 1.017) {
+      if (BL > 1.00) {
         let amount = amountLuna;
-        amount = amount - 1000000;
+        amount = amount - 100000;
         console.log(amount);
         contractAddress = LUNA_BLUNA_PAIR;
         contractFunction = {
@@ -59,8 +59,8 @@ async function goswap() {
               },
               amount: amount.toString(),
             },
-            belief_price: LB,
-            max_spread: 0.001,
+            belief_price: "0.967",//replace to LB
+            max_spread: "0.01",
           },
         };
         lunaAmount = { uluna: amount };
@@ -74,17 +74,20 @@ async function goswap() {
         console.log("Arbitrage could fail");
       }
     } else {
-      if (BL > 0.9935) {
+      if (LB > 0) {
         const amount = amountBluna;
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
-    
-
+        
+        let msgString = `{"swap":{"max_spread":"0.01","belief_price":"1"}}`;
+        let buff = new Buffer.from(msgString);
+        let base64data = buff.toString('base64');
+        console.log(base64data)
         contractFunction = {
           send: {
             contract: LUNA_BLUNA_PAIR,
             amount: amount.toString(),
-            msg: "eyJzd2FwIjp7fX0=",
+            msg: base64data,
           },
         };
         execute = new MsgExecuteContract(
@@ -97,10 +100,14 @@ async function goswap() {
   }
   if (execute != null) {
     console.log(`executing transation`);
-    const executeSwap = await wallet.createAndSignTx({
+    try {
+      const executeSwap = await wallet.createAndSignTx({
       msgs: [execute],
     });
     const txResult = await terra.tx.broadcast(executeSwap);
+  } catch(err){
+    console.log("Error message: ", err.message)
+  }
   } else {
     console.log("No transaction to make");
   }
