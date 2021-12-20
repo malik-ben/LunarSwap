@@ -59,7 +59,7 @@ async function goswap() {
               },
               amount: amount.toString(),
             },
-            belief_price: "0.968",//replace to LB
+            belief_price: "0.969",//replace to LB
             max_spread: "0.01",
           },
         };
