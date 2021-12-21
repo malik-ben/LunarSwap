@@ -44,7 +44,7 @@ async function goswap() {
   let amountBluna = await BLunaBalance();
   if (amountLuna > 10000 || amountBluna > 10000) {
     if (amountLuna >= amountBluna) {
-      if (BL > 1.00) {
+      if (LB < 0.977) {
         let amount = amountLuna;
         amount = amount - 100000;
         console.log(amount);
@@ -59,8 +59,8 @@ async function goswap() {
               },
               amount: amount.toString(),
             },
-            belief_price: "0.969",//replace to LB
-            max_spread: "0.01",
+            belief_price: `${LB}`,//replace to LB
+            max_spread: "0.001",
           },
         };
         lunaAmount = { uluna: amount };
@@ -74,12 +74,12 @@ async function goswap() {
         console.log("Arbitrage could fail");
       }
     } else {
-      if (LB > 0) {
+      if (LB > 0.992) {
         const amount = amountBluna;
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
         
-        let msgString = `{"swap":{"max_spread":"0.01","belief_price":"1.2"}}`;
+        let msgString = `{"swap":{"max_spread":"0.001","belief_price":"1.2"}}`;
         let buff = new Buffer.from(msgString);
         let base64data = buff.toString('base64');
         console.log(base64data)
