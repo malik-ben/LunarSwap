@@ -79,7 +79,7 @@ async function goswap() {
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
         
-        let msgString = `{"swap":{"max_spread":"0.01","belief_price":"1"}}`;
+        let msgString = `{"swap":{"max_spread":"0.01","belief_price":"1.2"}}`;
         let buff = new Buffer.from(msgString);
         let base64data = buff.toString('base64');
         console.log(base64data)
