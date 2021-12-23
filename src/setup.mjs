@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === "development") {
   terra = new LCDClient({
     URL: "https://bombay-lcd.terra.dev",
     chainID: "bombay-12",
+    gasPrices: { uusd: 0.2 },
   });
   MNEMONIC = process.env.MNEMONIC_TEST;
   LUNA_BLUNA_PAIR = process.env.LUNA_BLUNA_PAIR_TEST;
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === "production") {
   terra = new LCDClient({
     URL: "https://lcd.terra.dev",
     chainID: "columbus-5",
+    gasPrices: { uusd: 0.2 },
   });
   MNEMONIC = process.env.MNEMONIC_MAIN;
   LUNA_BLUNA_PAIR = process.env.LUNA_BLUNA_PAIR_MAIN;

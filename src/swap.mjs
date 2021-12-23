@@ -79,7 +79,7 @@ async function goswap() {
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
         
-        let msgString = `{"swap":{"max_spread":"0.001","belief_price":"1.2"}}`;
+        let msgString = `{"swap":{"max_spread":"0.001","belief_price":${BL}}}`;
         let buff = new Buffer.from(msgString);
         let base64data = buff.toString('base64');
         console.log(base64data)
@@ -113,4 +113,4 @@ async function goswap() {
   }
 }
 
-setInterval(goswap, 5000);
+setInterval(goswap, 10000);
