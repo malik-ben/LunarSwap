@@ -7,8 +7,8 @@ let BL, LB;
 //Get pair prices and total share
 const getPrices = async () => {
   const result = await terra.wasm.contractQuery(LUNA_BLUNA_PAIR, { pool: {} });
-  BL = (result.assets[0].amount / result.assets[1].amount) ;
-  LB = (result.assets[1].amount / result.assets[0].amount) ;
+  BL = result.assets[0].amount / result.assets[1].amount;
+  LB = result.assets[1].amount / result.assets[0].amount;
   console.log(`\nprice BLuna / Luna  = \x1b[31m${BL}\x1b[0m`);
   console.log(`price Luna / BLuna  = \x1b[32m${LB}\x1b[0m`);
   console.log("\n");
@@ -59,7 +59,7 @@ async function goswap() {
               },
               amount: amount.toString(),
             },
-            belief_price: `${LB}`,//replace to LB
+            belief_price: `${LB}`, //replace to LB
             max_spread: "0.001",
           },
         };
@@ -78,11 +78,11 @@ async function goswap() {
         const amount = amountBluna;
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
-        
-        let msgString = `{"swap":{"max_spread":"0.001","belief_price":${BL}}}`;
+
+        let msgString = `{"swap":{"max_spread":"0.001","belief_price":"${BL}"}}`;
         let buff = new Buffer.from(msgString);
-        let base64data = buff.toString('base64');
-        console.log(base64data)
+        let base64data = buff.toString("base64");
+        console.log(base64data);
         contractFunction = {
           send: {
             contract: LUNA_BLUNA_PAIR,
@@ -102,12 +102,12 @@ async function goswap() {
     console.log(`executing transation`);
     try {
       const executeSwap = await wallet.createAndSignTx({
-      msgs: [execute],
-    });
-    const txResult = await terra.tx.broadcast(executeSwap);
-  } catch(err){
-    console.log("Error message: ", err.message)
-  }
+        msgs: [execute],
+      });
+      const txResult = await terra.tx.broadcast(executeSwap);
+    } catch (err) {
+      console.log("Error message: ", err.message);
+    }
   } else {
     console.log("No transaction to make");
   }
