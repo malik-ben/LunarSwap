@@ -60,7 +60,7 @@ async function goswap() {
               amount: amount.toString(),
             },
             belief_price: `${LB}`, //replace to LB
-            max_spread: "0.001",
+            max_spread: "0.005",
           },
         };
         lunaAmount = { uluna: amount };
@@ -79,7 +79,7 @@ async function goswap() {
         contractAddress = BLUNA;
         console.log(`Amount to swap ${amount}`);
 
-        let msgString = `{"swap":{"max_spread":"0.01","belief_price":"${BL}"}}`;
+        let msgString = `{"swap":{"max_spread":"0.005","belief_price":"${BL}"}}`;
         let buff = new Buffer.from(msgString);
         let base64data = buff.toString("base64");
         console.log(base64data);
